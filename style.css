@@ -1,0 +1,16 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+body {
+display: flex;
+}
+
+.aside {
+    flex: 0 0 45vw;
+    margin-top: 80px;
+}
+
+.main {
+    flex: 1;
+}
