@@ -10,6 +10,8 @@ It's easy to find hiragana / katanata -> romaji practice online, but not vice ve
 
 # Usage / 使用方法
 
+[Try it here / 点我](https://oscarcx.com/gojuon-practice/)
+
 * Choose rows（选择要练习的行）
 * Click Generate Romaji（点击 Generate Romaji）
 * Selected groups of romaji will be shuffled randomly and displayed（这时罗马音会以乱序出现）
