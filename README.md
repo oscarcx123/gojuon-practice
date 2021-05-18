@@ -21,3 +21,7 @@ It's easy to find hiragana / katanata -> romaji practice online, but not vice ve
 ## 2021/05/16 V1.0
 
 糊了个网页出来，目前只有平假名练习，虽然简陋，但是能用。
+
+## 2021/05/17 V1.1
+
+稍微抄了点布局，然后增加了cookie的支持，会记住之前的选项。
