@@ -1,16 +1,24 @@
 table, th, td {
     border: 1px solid black;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
-body {
-display: flex;
+.header {
+    text-align: center;
+    padding: 20px;
 }
 
-.aside {
-    flex: 0 0 45vw;
-    margin-top: 80px;
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
 }
 
-.main {
-    flex: 1;
+.grid-item {
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
 }

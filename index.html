@@ -4,40 +4,51 @@
     <title>Gojuon Practice</title>
     <script src="romaji_gen.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script>
+        window.onload = function() {
+            loadCheckboxVal();
+        }
+    </script>
 </head>
 
 <body>
 
-<div class="main">
+<div class="header">
     <h1>Gojuon Practice</h1>
-    <input type="checkbox" id="a" name="checkbox" value=1>
-    <label for="a">a - あ</label><br>
-    <input type="checkbox" id="ka" name="checkbox" value=2>
-    <label for="ka">ka - か</label><br>
-    <input type="checkbox" id="sa" name="checkbox" value=3>
-    <label for="sa">sa - さ</label><br>
-    <input type="checkbox" id="ta" name="checkbox" value=4>
-    <label for="ta">ta - た</label><br>
-    <input type="checkbox" id="na" name="checkbox" value=5>
-    <label for="na">na - な</label><br>
-    <input type="checkbox" id="ha" name="checkbox" value=6>
-    <label for="ha">ha - は</label><br>
-    <input type="checkbox" id="ma" name="checkbox" value=7>
-    <label for="ma">ma - ま</label><br>
-    <input type="checkbox" id="ya" name="checkbox" value=8>
-    <label for="ya">ya - や</label><br>
-    <input type="checkbox" id="ra" name="checkbox" value=9>
-    <label for="ra">ra - ら</label><br>
-    <input type="checkbox" id="wa" name="checkbox" value=10>
-    <label for="wa">wa - わ</label><br>
-    <br>
-    <button type="button" onclick="generateRomaji()">generateRomaji!</button>
-    <button type="button" onclick="showHiragana()">showHiragana!</button>
 </div>
 
-<div class="aside">
-    <table>
-    </table>
+<div class="grid-container">
+    <div class="grid-item">
+        <input type="checkbox" id="a" name="checkbox" onclick="saveCheckboxVal();" value=1>
+        <label for="a">a - あ</label><br>
+        <input type="checkbox" id="ka" name="checkbox" onclick="saveCheckboxVal();" value=2>
+        <label for="ka">ka - か</label><br>
+        <input type="checkbox" id="sa" name="checkbox" onclick="saveCheckboxVal();" value=3>
+        <label for="sa">sa - さ</label><br>
+        <input type="checkbox" id="ta" name="checkbox" onclick="saveCheckboxVal();" value=4>
+        <label for="ta">ta - た</label><br>
+        <input type="checkbox" id="na" name="checkbox" onclick="saveCheckboxVal();" value=5>
+        <label for="na">na - な</label><br>
+        <input type="checkbox" id="ha" name="checkbox" onclick="saveCheckboxVal();" value=6>
+        <label for="ha">ha - は</label><br>
+        <input type="checkbox" id="ma" name="checkbox" onclick="saveCheckboxVal();" value=7>
+        <label for="ma">ma - ま</label><br>
+        <input type="checkbox" id="ya" name="checkbox" onclick="saveCheckboxVal();" value=8>
+        <label for="ya">ya - や</label><br>
+        <input type="checkbox" id="ra" name="checkbox" onclick="saveCheckboxVal();" value=9>
+        <label for="ra">ra - ら</label><br>
+        <input type="checkbox" id="wa" name="checkbox" onclick="saveCheckboxVal();" value=10>
+        <label for="wa">wa - わ</label><br>
+        <br>
+        <button type="button" onclick="generateRomaji()">generateRomaji!</button>
+        <br><br>
+        <button type="button" onclick="showHiragana()">showHiragana!</button>
+    </div>
+
+    <div class="grid-item">
+        <table>
+        </table>
+    </div>
 </div>
 
 </body>

@@ -15,10 +15,11 @@ function generateRomaji() {
     var select = []; // store selected rows
 
     // Loop through checkboxes to find all the selected rows
-    var checkboxes = document.getElementsByName("checkbox");
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            select.push(checkboxes[i].value);
+    var checkboxStatus = getCheckboxStatus();
+    
+    for (var i = 0; i < checkboxStatus.length; i++) {
+        if (checkboxStatus[i] == 1) {
+            select.push(i + 1);
         }
     }
 
@@ -66,6 +67,43 @@ function showHiragana() {
     }
 }
 
+function getCheckboxStatus() {
+    var status = [];
+    var checkboxes = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            status.push(1);
+        }
+        else {
+            status.push(0);
+        }
+    }
+    return status;
+}
+
+function setCheckboxStatus(checkboxStatus) {
+    var checkboxes = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxStatus[i] == 1) {
+            checkboxes[i].checked = true;
+        }
+    }
+}
+
+function saveCheckboxVal() {
+    var checkboxStatus = getCheckboxStatus();
+    setCookie("checkboxStatus", JSON.stringify(checkboxStatus), 1000);
+    console.log("saveCheckboxVal()", checkboxStatus)
+}
+
+function loadCheckboxVal() {
+    var res = getCookie("checkboxStatus");
+    if (res != "") {
+        var checkboxStatus = JSON.parse(res);
+        setCheckboxStatus(checkboxStatus);
+        console.log("loadCheckboxVal()", checkboxStatus)
+    }
+}
 
 // Durstenfeld shuffle (in-place)
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -101,4 +139,29 @@ function generateTable(table, data) {
             if(i == 1) cell.className = 'hiragana';
         }
     }
+}
+
+// Cookie setter and getter
+// https://www.w3schools.com/js/js_cookies.asp
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
 }
