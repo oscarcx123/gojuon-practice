@@ -12,6 +12,27 @@ const gojuon = [
     [["n", "ん","ン"]]
 ];
 
+const i18n = {
+    "en": {
+        "gojuonPractice": "Gojuon Practice",
+        "generateRomaji": "Generate Romaji",
+        "showHiragana": "Show Hiragana",
+        "showKatakana": "Show Katakana",
+        "romaji": "Romaji",
+        "hiragana": "Hiragana",
+        "katakana": "Katakana"
+    },
+    "zh": {
+        "gojuonPractice": "五十音图练习",
+        "generateRomaji": "乱序生成罗马音",
+        "showHiragana": "显示平假名",
+        "showKatakana": "显示片假名",
+        "romaji": "罗马音",
+        "hiragana": "平假名",
+        "katakana": "片假名"
+    }
+}
+
 function generateRomaji() {
     var select = []; // store selected rows
 
@@ -55,6 +76,7 @@ function generateRomaji() {
             ["katakana", "katakana"],
         ]
     );
+
     
     // Hide so that you don't get to see the answer
     hideCol("hiragana");
@@ -130,7 +152,7 @@ function generateTableHead(table, data) {
     let row = thead.insertRow();
     for (let key of data) {
         let th = document.createElement("th");
-        let text = document.createTextNode(key[0]);
+        let text = document.createTextNode(translate(key[0]));
         th.appendChild(text);
         th.className = key[1];
         row.appendChild(th);
@@ -174,4 +196,31 @@ function getCookie(cname) {
       }
     }
     return "";
+}
+
+function detectLanguge() {
+    var lang = navigator.languages
+        ? navigator.languages[0]
+        : navigator.language;
+    
+    return lang.substr(0, 2);
+}
+
+function translateAll() {
+    var lang = detectLanguge();
+    
+    // get translation resource
+    var translation = i18n[lang];
+
+    // get all i18n fields
+    var elements = document.getElementsByClassName("i18n")
+    for(var i = 0; i < elements.length; i++) {
+        elements[i].innerHTML = translation[elements[i].getAttribute("content")] || "Fix me!";
+        console.log(elements[i].innerHTML);
+    }
+}
+
+function translate(content) {
+    var lang = detectLanguge();
+    return i18n[lang][content];
 }
