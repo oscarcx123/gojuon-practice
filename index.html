@@ -2,10 +2,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Gojuon Practice</title>
-    <script src="romaji_gen.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="js/romaji_gen.js"></script>
+    <script src="js/i18n.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
     <script>
         window.onload = function() {
+            translate();
             loadCheckboxVal();
         }
     </script>
@@ -39,10 +42,14 @@
         <label for="ra">ra - ら</label><br>
         <input type="checkbox" id="wa" name="checkbox" onclick="saveCheckboxVal();" value=10>
         <label for="wa">wa - わ</label><br>
+        <input type="checkbox" id="n" name="checkbox" onclick="saveCheckboxVal();" value=10>
+        <label for="wa">n - ん</label><br>
         <br>
-        <button type="button" onclick="generateRomaji()">generateRomaji!</button>
+        <button type="button" onclick="generateRomaji()" class="i18n" content="generateRomaji">generateRomaji!</button>
         <br><br>
-        <button type="button" onclick="showHiragana()">showHiragana!</button>
+        <button type="button" onclick="showCol('hiragana')" class="i18n" content="showHiragana">showHiragana!</button>
+        <br><br>
+        <button type="button" onclick="showCol('katakana')" class="i18n" content="showKatakana">showKatakana!</button>
     </div>
 
     <div class="grid-item">

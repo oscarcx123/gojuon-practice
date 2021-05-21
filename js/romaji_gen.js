@@ -1,17 +1,18 @@
-function generateRomaji() {
-    const gojuon = [
-        [["a","あ"],["i","い"],["u","う"],["e","え"],["o","お"]],
-        [["ka","か"],["ki","き"],["ku","く"],["ke","け"],["ko","こ"]],
-        [["sa","さ"],["shi","し"],["su","す"],["se","せ"],["so","そ"]],
-        [["ta","た"],["chi","ち"],["tsu","つ"],["te","て"],["to","と"]],
-        [["na","な"],["ni","に"],["nu","ぬ"],["ne","ね"],["no","の"]],
-        [["ha","は"],["hi","ひ"],["fu","ふ"],["he","へ"],["ho","ほ"]],
-        [["ma","ま"],["mi","み"],["mu","む"],["me","め"],["mo","も"]],
-        [["ya","や"],["yu","ゆ"],["yo","よ"]],
-        [["ra","ら"],["ri","り"],["ru","る"],["re","れ"],["ro","ろ"]],
-        [["wa","わ"],["wo","を"]]
-    ];
+const gojuon = [
+    [["a","あ","ア"],["i","い","イ"],["u","う","ウ"],["e","え","エ"],["o","お","オ"]],
+    [["ka","か","カ"],["ki","き","キ"],["ku","く","ク"],["ke","け","ケ"],["ko","こ","コ"]],
+    [["sa","さ","サ"],["shi","し","シ"],["su","す","ス"],["se","せ","セ"],["so","そ","ソ"]],
+    [["ta","た","タ"],["chi","ち","チ"],["tsu","つ","ツ"],["te","て","テ"],["to","と","ト"]],
+    [["na","な","ナ"],["ni","に","ニ"],["nu","ぬ","ヌ"],["ne","ね","ネ"],["no","の","ノ"]],
+    [["ha","は","ハ"],["hi","ひ","ヒ"],["fu","ふ","フ"],["he","へ","ヘ"],["ho","ほ","ホ"]],
+    [["ma","ま","マ"],["mi","み","ミ"],["mu","む","ム"],["me","め","メ"],["mo","も","モ"]],
+    [["ya","や","ヤ"],["yu","ゆ","ユ"],["yo","よ","ヨ"]],
+    [["ra","ら","ラ"],["ri","り","リ"],["ru","る","ル"],["re","れ","レ"],["ro","ろ","ロ"]],
+    [["wa","わ","ワ"],["wo","を","ヲ"]],
+    [["n", "ん","ン"]]
+];
 
+function generateRomaji() {
     var select = []; // store selected rows
 
     // Loop through checkboxes to find all the selected rows
@@ -45,25 +46,32 @@ function generateRomaji() {
 
     // Generate table
     var table = document.querySelector("table");
-    table.textContent = '';
+    table.textContent = "";
     generateTable(table, selectedList);
-    generateTableHead(table, ['romaji', 'hiragana']);
+    generateTableHead(table,
+        [
+            ["romaji", "romaji"],
+            ["hiragana", "hiragana"],
+            ["katakana", "katakana"],
+        ]
+    );
     
     // Hide so that you don't get to see the answer
-    hideHiragana();
+    hideCol("hiragana");
+    hideCol("katakana");
 }
 
-function hideHiragana() {
-    var elements = document.getElementsByClassName("hiragana");
+function hideCol(className) {
+    var elements = document.getElementsByClassName(className);
     for(var i = 0; i < elements.length; i++) {
         elements[i].style.display = "none";
     }
 }
 
-function showHiragana() {
-    var elements = document.getElementsByClassName("hiragana");
+function showCol(className) {
+    var elements = document.getElementsByClassName(className);
     for(var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "block";
+        elements[i].style.display = "";
     }
 }
 
@@ -122,8 +130,9 @@ function generateTableHead(table, data) {
     let row = thead.insertRow();
     for (let key of data) {
         let th = document.createElement("th");
-        let text = document.createTextNode(key);
+        let text = document.createTextNode(key[0]);
         th.appendChild(text);
+        th.className = key[1];
         row.appendChild(th);
     }
 }
@@ -135,8 +144,9 @@ function generateTable(table, data) {
             let cell = row.insertCell();
             let text = document.createTextNode(element[i]);
             cell.appendChild(text);
-            if(i == 0) cell.className = 'romaji';
-            if(i == 1) cell.className = 'hiragana';
+            if(i == 0) cell.className = "romaji";
+            else if(i == 1) cell.className = "hiragana";
+            else if(i == 2) cell.className = "katakana";
         }
     }
 }
@@ -153,10 +163,10 @@ function setCookie(cname, cvalue, exdays) {
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
+    var ca = decodedCookie.split(";");
     for(var i = 0; i <ca.length; i++) {
       var c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) == " ") {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
