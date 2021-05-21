@@ -203,7 +203,8 @@ function detectLanguge() {
         ? navigator.languages[0]
         : navigator.language;
     
-    return lang.substr(0, 2);
+    lang = lang.substr(0, 2);
+    return lang in i18n ? lang : "en";
 }
 
 function translateAll() {
