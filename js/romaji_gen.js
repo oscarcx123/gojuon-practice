@@ -24,7 +24,7 @@ const i18n = {
     },
     "zh": {
         "gojuonPractice": "五十音图练习",
-        "generateRomaji": "乱序生成罗马音",
+        "generateRomaji": "生成罗马音",
         "showHiragana": "显示平假名",
         "showKatakana": "显示片假名",
         "romaji": "罗马音",
