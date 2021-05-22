@@ -160,15 +160,16 @@ function generateTableHead(table, data) {
 }
   
 function generateTable(table, data) {
-    for (let element of data) {
+    for (var i = 0; i < data.length; i++) {
         let row = table.insertRow();
-        for (var i = 0; i < element.length; i++) {
+        for (var j = 0; j < data[i].length; j++) {
             let cell = row.insertCell();
-            let text = document.createTextNode(element[i]);
+            let text = document.createTextNode(data[i][j]);
             cell.appendChild(text);
-            if(i == 0) cell.className = "romaji";
-            else if(i == 1) cell.className = "hiragana";
-            else if(i == 2) cell.className = "katakana";
+            if(j == 0) cell.className = "romaji";
+            else if(j == 1) cell.className = "hiragana";
+            else if(j == 2) cell.className = "katakana";
+            if (i % 10 > 4) cell.classList.add("grey");
         }
     }
 }
