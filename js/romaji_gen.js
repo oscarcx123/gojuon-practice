@@ -18,6 +18,7 @@ const i18n = {
         "generateRomaji": "Generate Romaji",
         "showHiragana": "Show Hiragana",
         "showKatakana": "Show Katakana",
+        "reset_cb": "Clear Checkboxes",
         "romaji": "Romaji",
         "hiragana": "Hiragana",
         "katakana": "Katakana"
@@ -27,6 +28,7 @@ const i18n = {
         "generateRomaji": "生成罗马音",
         "showHiragana": "显示平假名",
         "showKatakana": "显示片假名",
+        "reset_cb": "重置复选框",
         "romaji": "罗马音",
         "hiragana": "平假名",
         "katakana": "片假名"
@@ -111,6 +113,7 @@ function getCheckboxStatus() {
     return status;
 }
 
+// param: checkboxStatus -> List (e.g. [0, 1, 0, 1])
 function setCheckboxStatus(checkboxStatus) {
     var checkboxes = document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxes.length; i++) {
@@ -123,7 +126,7 @@ function setCheckboxStatus(checkboxStatus) {
 function saveCheckboxVal() {
     var checkboxStatus = getCheckboxStatus();
     setCookie("checkboxStatus", JSON.stringify(checkboxStatus), 1000);
-    console.log("saveCheckboxVal()", checkboxStatus)
+    // console.log("saveCheckboxVal()", checkboxStatus)
 }
 
 function loadCheckboxVal() {
@@ -131,8 +134,16 @@ function loadCheckboxVal() {
     if (res != "") {
         var checkboxStatus = JSON.parse(res);
         setCheckboxStatus(checkboxStatus);
-        console.log("loadCheckboxVal()", checkboxStatus)
+        // console.log("loadCheckboxVal()", checkboxStatus)
     }
+}
+
+function clearCheckoxVal() {
+    var checkboxes = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+    }
+    saveCheckboxVal();
 }
 
 // Durstenfeld shuffle (in-place)
