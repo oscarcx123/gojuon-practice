@@ -44,3 +44,7 @@ It's easy to find hiragana / katanata -> romaji practice online, but not vice ve
 ## 2021/05/21 V1.2
 
 增加i18n支持，加入片假名练习。
+
+## 2021/05/27
+
+五十音图我背熟了，本项目不再更新
