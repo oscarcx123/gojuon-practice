@@ -19,6 +19,7 @@ const i18n = {
         "showHiragana": "Show Hiragana",
         "showKatakana": "Show Katakana",
         "reset_cb": "Clear Checkboxes",
+        "checkall_cb": "Select ALL",
         "romaji": "Romaji",
         "hiragana": "Hiragana",
         "katakana": "Katakana"
@@ -29,6 +30,7 @@ const i18n = {
         "showHiragana": "显示平假名",
         "showKatakana": "显示片假名",
         "reset_cb": "重置复选框",
+        "checkall_cb": "选中全部",
         "romaji": "罗马音",
         "hiragana": "平假名",
         "katakana": "片假名"
@@ -138,10 +140,18 @@ function loadCheckboxVal() {
     }
 }
 
-function clearCheckoxVal() {
+function clearCbVal() {
     var checkboxes = document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
+    }
+    saveCheckboxVal();
+}
+
+function checkAllCb() {
+    var checkboxes = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = true;
     }
     saveCheckboxVal();
 }
